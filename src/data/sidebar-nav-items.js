@@ -13,14 +13,14 @@ export default function() {
     },
     {
       title: "liste des actualités",
-      to: "/formations",
+      to: "/news",
       htmlBefore: '<i class="material-icons">edit</i>',
       htmlAfter: ""
     },
     {
       title: "Ajouter actualité",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/add-new-post",
+      to: "/add-new-news",
     },
 
     {

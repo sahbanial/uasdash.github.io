@@ -14,13 +14,15 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import AddNewFormation from "./views/AddNewFormation";
 import Formations from "./views/Formations";
+import News from "./views/News";
+import AddNewNews from "./views/AddNewNews";
 
 export default [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
+    component: () => <Redirect to="/formations" />
   },
   {
     path: "/add-new-formation",
@@ -33,6 +35,11 @@ export default [
     component: Formations
   },
   {
+    path: "/news",
+    layout: DefaultLayout,
+    component: News
+  },
+  {
     path: "/blog-overview",
     layout: DefaultLayout,
     component: BlogOverview
@@ -43,9 +50,9 @@ export default [
     component: UserProfileLite
   },
   {
-    path: "/add-new-post",
+    path: "/add-new-news",
     layout: DefaultLayout,
-    component: AddNewPost
+    component: AddNewNews
   },
   {
     path: "/errors",

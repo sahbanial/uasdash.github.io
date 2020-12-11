@@ -1,6 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill";
-import { Button, Card, CardBody, Form, FormInput } from "shards-react";
+import { Button, Card, CardBody, Form, FormInput ,FormTextarea} from "shards-react";
 import "react-quill/dist/quill.snow.css";
 import "../../assets/quill.css";
 import { useMutation } from "react-apollo";
@@ -15,13 +15,15 @@ const ADD = gql`
 `;
 const FormationForm = (props) => {
   const [addFormation] = useMutation(ADD);
+  const [isSubmited,setIsSubmited]=React.useState(false);
   const [state, setState] = React.useState({
     name: "",
     description: "",
   });
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ state });
+    setIsSubmited(true)
+   
     if (state.name && state.description) {
       addFormation({
         variables: {
@@ -55,7 +57,7 @@ const FormationForm = (props) => {
     <Card small className="mb-3">
       <CardBody>
         <Form className="add-new-post" onSubmit={handleSubmit}>
-          <div className="d-flex justify-content-end p-1">
+          <div className="d-flex justify-content-end p-1 mb-2">
             <Button>Ajouter</Button>
           </div>
           <FormInput
@@ -63,13 +65,19 @@ const FormationForm = (props) => {
             className="mb-3"
             placeholder="Nom du formation"
             name="name"
+            invalid={!!!state.name && isSubmited}
+            
             onChange={handleChangeInput}
           />
-          <textarea
+          <FormTextarea
+            size="lg"
             placeholder="description"
             className="form-control mb-1"
             name="description"
             onChange={handleChangeInput}
+            invalid={!!!state.description && isSubmited}
+            type=""
+            
           />
         </Form>
       </CardBody>
